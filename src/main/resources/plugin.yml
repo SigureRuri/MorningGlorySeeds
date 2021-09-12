@@ -1,0 +1,5 @@
+name: MorningGlorySeeds
+version: '${version}'
+main: com.github.sigureruri.morninggloryseeds.MorningGlorySeeds
+authors: [ SigureRuri ]
+website: https://github.com/SigureRuri/MorningGlorySeeds
