@@ -6,7 +6,7 @@ import java.net.URL
 
 class MorningGlorySeeds : JavaPlugin() {
 
-    private var webhookSender: DiscordWebhookSender? = null
+    private lateinit var webhookSender: DiscordWebhookSender
 
     override fun onEnable() {
         saveDefaultConfig()
@@ -23,7 +23,7 @@ class MorningGlorySeeds : JavaPlugin() {
 
     override fun onDisable() {
         val seeds = Bukkit.getWorlds().joinToString() { "${it.name}:${it.seed}" }
-        webhookSender?.sendMessage(seeds)
+        webhookSender.sendMessage(seeds)
     }
 
 }
