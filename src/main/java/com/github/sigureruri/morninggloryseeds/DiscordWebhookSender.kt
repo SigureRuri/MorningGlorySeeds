@@ -11,7 +11,6 @@ class DiscordWebhookSender(private val webhookUrl: URL) {
     fun sendMessage(message: String) {
         val headers = mapOf("User-Agent" to "MorningGlorySeeds")
         val json = """{"username":"MorningGlorySeeds","content":"$message"}"""
-        println(json)
 
         try {
             httpClient.postWithJson(webhookUrl, headers, json)
