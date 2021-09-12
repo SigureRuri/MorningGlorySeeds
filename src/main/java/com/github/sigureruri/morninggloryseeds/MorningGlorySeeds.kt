@@ -11,14 +11,17 @@ class MorningGlorySeeds : JavaPlugin() {
     override fun onEnable() {
         saveDefaultConfig()
 
-        val webhookUrl = try {
-            URL(config.getString("webhook"))
-        } catch (e: Exception) {
-            logger.warning("Webhook url is not found.")
-            server.pluginManager.disablePlugin(this)
-            return
-        }
-        webhookSender = DiscordWebhookSender(webhookUrl)
+        runCatching {
+            val url = config.getString("webhook")
+            URL(url)
+        }.fold (
+            onSuccess = { webhookSender = DiscordWebhookSender(it) },
+            onFailure = {
+                logger.severe("Webhook URL was not found, or we weren't able to set it.")
+                logger.severe(it.toString())
+                server.pluginManager.disablePlugin(this)
+            }
+        )
     }
 
     override fun onDisable() {
