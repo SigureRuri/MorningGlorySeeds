@@ -11,7 +11,7 @@ targetCompatibility = '1.8'
 
 configurations {
     embed
-    compile.extendsFrom(embed)
+    implementation.extendsFrom(embed)
 }
 
 repositories {
