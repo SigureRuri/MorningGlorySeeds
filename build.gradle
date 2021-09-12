@@ -34,8 +34,8 @@ dependencies {
 processResources {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     filteringCharset = 'UTF-8'
-    from(sourceSets.main.resources.srcDirs) {
-        filter ReplaceTokens, tokens: [version: version]
+    filesMatching("plugin.yml") {
+        expand("version" : project.version)
     }
 }
 
