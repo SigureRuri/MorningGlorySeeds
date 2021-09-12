@@ -28,7 +28,7 @@ class MorningGlorySeeds : JavaPlugin() {
         val worlds = Bukkit.getWorlds()
         if (worlds.isNotEmpty()) {
             val message = worlds.joinToString("\n") { "${it.name}: ${it.seed}" }
-            webhookSender.sendMessage(message)
+            webhookSender.sendMessage("Worlds' Seeds\n$message")
         }
     }
 
