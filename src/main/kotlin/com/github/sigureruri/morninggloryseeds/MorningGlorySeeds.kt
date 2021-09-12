@@ -25,11 +25,8 @@ class MorningGlorySeeds : JavaPlugin() {
     }
 
     override fun onDisable() {
-        val worlds = Bukkit.getWorlds()
-        if (worlds.isNotEmpty()) {
-            val message = worlds.joinToString("\n") { "${it.name}: ${it.seed}" }
-            webhookSender?.sendMessage("Worlds' Seeds\n$message")
-        }
+        val message = Bukkit.getWorlds().joinToString("\n") { "${it.name}: ${it.seed}" }
+        webhookSender?.sendMessage("Worlds' Seeds\n$message")
     }
 
 }
