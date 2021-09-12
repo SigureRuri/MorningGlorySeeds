@@ -18,7 +18,7 @@ class MorningGlorySeeds : JavaPlugin() {
             onSuccess = { webhookSender = DiscordWebhookSender(it) },
             onFailure = {
                 logger.severe("Webhook URL was not found, or we weren't able to set it.")
-                logger.severe(it.toString())
+                it.printStackTrace()
                 server.pluginManager.disablePlugin(this)
             }
         )
