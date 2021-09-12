@@ -11,19 +11,22 @@ class MorningGlorySeeds : JavaPlugin() {
     override fun onEnable() {
         saveDefaultConfig()
 
-        val webhookUrl = try {
-            URL(config.getString("webhook"))
-        } catch (e: Exception) {
-            logger.warning("webhook url is not found")
-            server.pluginManager.disablePlugin(this)
-            return
-        }
-        webhookSender = DiscordWebhookSender(webhookUrl)
+        runCatching {
+            val url = config.getString("webhook")
+            URL(url)
+        }.fold (
+            onSuccess = { webhookSender = DiscordWebhookSender(it) },
+            onFailure = {
+                logger.severe("Webhook URL was not found, or we weren't able to set it.")
+                it.printStackTrace()
+                server.pluginManager.disablePlugin(this)
+            }
+        )
     }
 
     override fun onDisable() {
-        val seeds = Bukkit.getWorlds().joinToString() { "${it.name}:${it.seed}" }
-        webhookSender?.sendMessage(seeds)
+        val message = Bukkit.getWorlds().joinToString("\n") { "${it.name}: ${it.seed}" }
+        webhookSender?.sendMessage("Worlds' Seeds\n$message")
     }
 
 }
