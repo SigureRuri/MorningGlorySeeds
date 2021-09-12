@@ -1,4 +1,5 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.5.21'
 }
@@ -8,11 +9,6 @@ version = '1.0-SNAPSHOT'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
-
-configurations {
-    embed
-    implementation.extendsFrom(embed)
-}
 
 repositories {
     mavenCentral()
@@ -28,7 +24,8 @@ repositories {
 
 dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.15.2-R0.1-SNAPSHOT'
-    embed 'org.jetbrains.kotlin:kotlin-stdlib:1.5.21'
+    implementation('org.jetbrains.kotlin:kotlin-stdlib:1.5.21')
+    implementation(files("libs/SkyStory-1.0-SNAPSHOT.jar"))
 }
 
 processResources {
@@ -39,6 +36,8 @@ processResources {
     }
 }
 
-jar {
-    from { configurations.embed.collect { it.isDirectory() ? it : zipTree(it) } }
+shadowJar {
+    archiveBaseName.set(rootProject.name)
+    archiveClassifier.set("")
+    archiveVersion.set("")
 }
