@@ -14,7 +14,7 @@ class MorningGlorySeeds : JavaPlugin() {
         val webhookUrl = try {
             URL(config.getString("webhook"))
         } catch (e: Exception) {
-            logger.warning("webhook url is not found")
+            logger.warning("Webhook url is not found.")
             server.pluginManager.disablePlugin(this)
             return
         }
