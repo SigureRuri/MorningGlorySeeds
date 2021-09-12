@@ -6,7 +6,7 @@ import java.net.URL
 
 class MorningGlorySeeds : JavaPlugin() {
 
-    private lateinit var webhookSender: DiscordWebhookSender
+    private var webhookSender: DiscordWebhookSender? = null
 
     override fun onEnable() {
         saveDefaultConfig()
@@ -28,7 +28,7 @@ class MorningGlorySeeds : JavaPlugin() {
         val worlds = Bukkit.getWorlds()
         if (worlds.isNotEmpty()) {
             val message = worlds.joinToString("\n") { "${it.name}: ${it.seed}" }
-            webhookSender.sendMessage("Worlds' Seeds\n$message")
+            webhookSender?.sendMessage("Worlds' Seeds\n$message")
         }
     }
 
