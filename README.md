@@ -6,3 +6,7 @@
 Morning Glory Seedsは、以下のライブラリを含んでいます。
 
 - [SkyStory](https://github.com/SigureRuri/SkyStory) - webhookの送信に使用します。
+
+## ビルド方法
+
+`gradlew shadowJar`
