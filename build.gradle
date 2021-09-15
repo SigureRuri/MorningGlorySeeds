@@ -25,7 +25,7 @@ repositories {
 dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.15.2-R0.1-SNAPSHOT'
     implementation('org.jetbrains.kotlin:kotlin-stdlib:1.5.21')
-    implementation(files("libs/SkyStory-1.0-SNAPSHOT.jar"))
+    implementation(files("libs/SkyStory-1.1-SNAPSHOT.jar"))
 }
 
 processResources {
